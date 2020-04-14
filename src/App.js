@@ -47,14 +47,20 @@ const CheckoutForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const card = elements.getElement(CardElement);
-    const result = await stripe.createToken(card)
+    const result = await stripe.createPaymentMethod({
+      type: 'card',
+      card: card
+    });
     if (result.error) {
       // Inform the user if there was an error.
       setError(result.error.message);
     } else {
       setError(null);
       // Send the token to your server.
-      stripeTokenHandler(result.token);
+      const response = stripeTokenHandler(result.paymentMethod);
+      response.then(res => {
+        console.log(res)
+      })
     }
   };
 
@@ -73,18 +79,38 @@ const CheckoutForm = () => {
       </div>
       <button type="submit">Submit Payment</button>
     </form>
-  );
+  )
 };
+
+const SubscribeButton = () => {
+    // Handle button click.
+    const handleClick = async () => {
+      console.log('handleClick');
+      const product_id = 'prod_H3PzVr5ns3o7km';
+      const pricing_plan = 'plan_H3PzwfOpZoW9sL';
+      const response = stripeSubscriptionHandler(product_id, pricing_plan);
+      response.then(res => {
+        console.log(res)
+      })
+    };
+
+    return (
+      <button onClick={() => handleClick()}>Subscribe GSH(300 JPY/Month)</button>
+    )
+  }
+;
 
 // Setup Stripe.js and the Elements provider
 const stripePromise = loadStripe('pk_test_ihxb7YntjUWqUPXg2IkmusTe00kSfF5xvh');
 
 const App = () => {
   return (
-    <Elements stripe={stripePromise}>
-      <CheckoutForm/>
-    </Elements>
-
+    <div>
+      <Elements stripe={stripePromise}>
+        <CheckoutForm/>
+      </Elements>
+      <SubscribeButton/>
+    </div>
   );
 };
 
@@ -97,6 +123,21 @@ async function stripeTokenHandler(token) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({card_token: token.id})
+  });
+
+  return response.json();
+}
+
+async function stripeSubscriptionHandler(productId, pricingPlan) {
+  const response = await fetch('http://localhost:2999/api/billing/subscriptions', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      product_id: productId,
+      pricing_plan: pricingPlan
+    })
   });
 
   return response.json();

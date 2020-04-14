@@ -1,38 +1,157 @@
-.App {
-  text-align: center;
+/**
+ * The CSS shown here will not be introduced in the Quickstart guide, but shows
+ * how you can use CSS to style your Element's container.
+ */
+.StripeElement--invalid {
+    border-color: #fa755a;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.StripeElement {
+    box-sizing: border-box;
+    height: 40px;
+    padding: 10px 12px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: white;
+    box-shadow: 0 1px 3px 0 #e6ebf1;
+    -webkit-transition: box-shadow 150ms ease;
+    transition: box-shadow 150ms ease;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+*, label {
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 16px;
+    font-variant: normal;
+    padding: 0;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.ElementsApp, .ElementsApp .InputElement {
+    color: #32325d;
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-.App-link {
-  color: #61dafb;
+ .ElementsApp, .ElementsApp .InputElement {
+     color: #32325d;
+     font-family: "Helvetica Neue", Helvetica, sans-serif;
+     font-size: 16px;
+     -webkit-font-smoothing: antialiased;
+     -moz-osx-font-smoothing: grayscale;
+ }
+.InputContainer .InputElement {
+    position: absolute;
+    top: 0;
+}
+.CardField-number .CardField-number-fakeNumber, .CardField-number input {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+}
+.CardField-number .CardField-number-fakeNumber, .CardField-number input, .CardField-number input:-webkit-autofill {
+    transition: background-color 100000000s,opacity .3s cubic-bezier(.25,.46,.45,.94);
+    transition-timing-function: cubic-bezier(.25,.46,.45,.94);
+}
+.ElementsApp input {
+    -webkit-animation: 1ms void-animation-out;
+}
+.ElementsApp input {
+    background-color: transparent;
+    border: none;
+    display: block;
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-size: 1em;
+    line-height: 1.2em;
+    height: 1.2em;
+}
+*, :after, :before {
+    box-sizing: border-box;
+}
+input {
+    -webkit-writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    color: -internal-light-dark-color(black, white);
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    -webkit-appearance: textfield;
+    background-color: -internal-light-dark-color(white, black);
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    margin: 0em;
+    font: 400 11px system-ui;
+    padding: 1px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: initial;
+    border-image: initial;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.InputContainer {
+    position: relative;
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    text-decoration: none;
+    color: #fff;
+    background: #32325d;
+    white-space: nowrap;
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 14px;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+    text-decoration: none;
+    -webkit-transition: all 150ms ease;
+    transition: all 150ms ease;
+    float: left;
+    margin-left: 12px;
+    margin-top: 28px;
+}
+
+
+.form-row {
+    width: 70%;
+    float: left;
+}
+
+div {
+    display: block;
+}
+
+.CardField-input-wrapper {
+    position: absolute;
+    left: 0;
+    right: 0;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+*, label {
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 16px;
+    font-variant: normal;
+    padding: 0;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
 }
